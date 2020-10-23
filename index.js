@@ -30,7 +30,7 @@ app.get('/works/', function(req, res, next) {
   res.json({"path": "works"})
 })
 
-app.get('/works/:id', function(req, res, next) {
+app.get('/works/:id/xml', function(req, res, next) {
   const id = req.params.id
   const clavis = parseInt(id.substring(3))
   const dir = (Math.floor(clavis/1000) * 1000 + 1) + '-' + (Math.ceil(clavis/1000) * 1000)
@@ -51,7 +51,10 @@ app.get('/works/:id', function(req, res, next) {
   .then(({ data }) => {
     var xmlContent = new Buffer.from(data.content, 'base64')
     xmlContent = xmlContent.toString()
-    res.send(xmlContent)
+    
+    res.render('xmlviewer', {
+      xml: xmlContent
+    })
   })
 })
 
