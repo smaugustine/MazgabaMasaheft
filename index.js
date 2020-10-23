@@ -23,9 +23,11 @@ var GitHub = new Octokit()
 
 // Routes //
 app.get('/', function(req, res, next) {
+  res.json({"path": "index"})
 })
 
 app.get('/works/', function(req, res, next) {
+  res.json({"path": "works"})
 })
 
 app.get('/works/:id', function(req, res, next) {
