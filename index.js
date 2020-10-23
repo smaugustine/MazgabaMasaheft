@@ -56,3 +56,6 @@ app.get('/works/:id', function(req, res, next) {
     res.send(xmlContent)
   })
 })
+
+// Serve //
+app.listen(port)
