@@ -1,0 +1,29 @@
+{
+  "name": "mazgaba-masaheft",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smaugustine/MazgabaMasaheft.git"
+  },
+  "author": "Augustine Dickinson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smaugustine/MazgabaMasaheft/issues"
+  },
+  "homepage": "https://github.com/smaugustine/MazgabaMasaheft#readme",
+  "dependencies": {
+    "@octokit/rest": "^18.0.6",
+    "express": "^4.17.1",
+    "express-compile-sass": "^4.0.0",
+    "express-handlebars": "^5.1.0",
+    "node-sass": "^4.14.1"
+  },
+  "devDependencies": {
+    "bulma": "^0.9.1"
+  }
+}
