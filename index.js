@@ -35,19 +35,17 @@ app.get('/works/:id', function(req, res, next) {
   const clavis = parseInt(id.substring(3))
   const dir = (Math.floor(clavis/1000) * 1000 + 1) + '-' + (Math.ceil(clavis/1000) * 1000)
 
-  GitHub.repos.getContents({
+  GitHub.repos.getContent({
     owner: 'BetaMasaheft',
     repo: 'Works',
     branch: 'master',
     path: dir+'/'+id+'.xml'
   })
   .then(({ data }) => {
-    var fileSHA = data.sha
-
     return GitHub.git.getBlob({
-      owner: owner,
-      repo: repo,
-      file_sha: fileSHA
+      owner: 'BetaMasaheft',
+      repo: 'works',
+      file_sha: data.sha
     })
   })
   .then(({ data }) => {
