@@ -1,0 +1,34 @@
+<div class="tabs is-centered">
+  <ul>
+    <li {{#if data}}class="is-active"{{/if}}>
+      <a href="./main">
+        <span class="icon is-small"><i class="fas fa-file-alt"></i></span>
+        <span>Data</span>
+      </a>
+    </li>
+    <li>
+      <a>
+        <span class="icon is-small"><i class="fas fa-image"></i></span>
+        <span>Images</span>
+      </a>
+    </li>
+    <li {{#if xml}}class="is-active"{{/if}}>
+      <a href="./xml">
+        <span class="icon is-small"><i class="fas fa-file-code"></i></span>
+        <span>XML</span>
+      </a>
+    </li>
+    <li>
+      <a>
+        <span class="icon is-small"><i class="fab fa-github"></i></span>
+        <span>GitHub</span>
+      </a>
+    </li>
+    <li>
+      <a>
+        <span class="icon is-small"><i class="fas fa-share"></i></span>
+        <span>BetMas</span>
+      </a>
+    </li>
+  </ul>
+</div>

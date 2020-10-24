@@ -18,6 +18,8 @@
   <section class="section">
     <div class="container">
 
+      {{#if activeTab}}{{> tabs activeTab}}{{/if}}
+
       {{{body}}}
 
     </div>

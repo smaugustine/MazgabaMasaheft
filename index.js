@@ -17,46 +17,16 @@ app.use(compileSass({
 }))
 app.use(express.static(root))
 
-// GitHub API //
-const { Octokit } = require("@octokit/rest")
-var GitHub = new Octokit()
-
 // Routes //
 app.get('/', function(req, res, next) {
   res.json({"path": "index"})
 })
 
-app.get('/works/', function(req, res, next) {
-  res.json({"path": "works"})
-})
+const works = require('./routes/works')
+app.use('/works', works)
 
-app.get('/works/:id/xml', function(req, res, next) {
-  const id = req.params.id
-  const clavis = parseInt(id.substring(3))
-  const dir = (Math.floor(clavis/1000) * 1000 + 1) + '-' + (Math.ceil(clavis/1000) * 1000)
-
-  GitHub.repos.getContent({
-    owner: 'BetaMasaheft',
-    repo: 'Works',
-    branch: 'master',
-    path: dir+'/'+id+'.xml'
-  })
-  .then(({ data }) => {
-    return GitHub.git.getBlob({
-      owner: 'BetaMasaheft',
-      repo: 'works',
-      file_sha: data.sha
-    })
-  })
-  .then(({ data }) => {
-    var xmlContent = new Buffer.from(data.content, 'base64')
-    xmlContent = xmlContent.toString()
-    
-    res.render('xmlviewer', {
-      xml: xmlContent
-    })
-  })
-})
+const manuscripts = require('./routes/manuscripts')
+app.use('/manuscripts', manuscripts)
 
 // Serve //
 app.listen(port)
