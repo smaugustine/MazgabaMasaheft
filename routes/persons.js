@@ -4,8 +4,8 @@ const router = express.Router()
 const GitHub = require('../github')
 
 router.get('/', function(req, res, next) {
-  res.render('works/index', {
-    title: 'Works'
+  res.render('persons/index', {
+    title: 'Persons'
   })
 })
 
@@ -17,22 +17,22 @@ router.get('/:id/:type', function(req, res, next) {
   const responseType = req.params.type
 
   const id = req.params.id
-  const clavis = parseInt(id.substring(3))
-  const dir = (Math.floor(clavis/1000) * 1000 + 1) + '-' + (Math.ceil(clavis/1000) * 1000)
+  const idno = parseInt(id.substring(3))
+  const dir = 'PRS' + (Math.floor(idno/1000) * 1000 + 1) + '-' + (Math.ceil(idno/1000) * 1000)
 
   var branch = 'master'
   if(typeof req.query.branch == 'string' && req.query.branch !== '') branch = req.query.branch
 
   GitHub.repos.getContent({
     owner: 'BetaMasaheft',
-    repo: 'Works',
+    repo: 'Persons',
     ref: branch,
     path: dir+'/'+id+'.xml'
   })
   .then(({ data }) => {
     return GitHub.git.getBlob({
       owner: 'BetaMasaheft',
-      repo: 'Works',
+      repo: 'Persons',
       file_sha: data.sha
     })
   })
@@ -40,12 +40,12 @@ router.get('/:id/:type', function(req, res, next) {
     var xmlContent = new Buffer.from(data.content, 'base64')
     xmlContent = xmlContent.toString()
 
-    const ghUrl = 'https://github.com/BetaMasaheft/Works/blob/'+branch+'/'+dir+'/'+id+'.xml'
-    const bmUrl = 'https://betamasaheft.eu/works/'+id+'/'+(responseType == 'xml' ? '' : responseType)
+    const ghUrl = 'https://github.com/BetaMasaheft/Persons/blob/'+branch+'/'+dir+'/'+id+'.xml'
+    const bmUrl = 'https://betamasaheft.eu/persons/'+id+'/'+(responseType == 'xml' ? '' : responseType)
 
     if(responseType == 'main') {
-      res.render('works/data', {
-        title: 'Works',
+      res.render('persons/data', {
+        title: 'Persons',
         subtitle: id,
         tabs: {
           active: {"data": true},
@@ -60,7 +60,7 @@ router.get('/:id/:type', function(req, res, next) {
     
     else if(responseType == 'xml') {
       res.render('xml', {
-        title: 'Works',
+        title: 'Persons',
         subtitle: id,
         tabs: {
           active: {"xml": true},

@@ -19,7 +19,7 @@ app.use(express.static(root))
 
 // Routes //
 app.get('/', function(req, res, next) {
-  res.json({"path": "index"})
+  res.render('index')
 })
 
 const works = require('./routes/works')
@@ -27,6 +27,17 @@ app.use('/works', works)
 
 const manuscripts = require('./routes/manuscripts')
 app.use('/manuscripts', manuscripts)
+
+const persons = require('./routes/persons')
+app.use('/persons', persons)
+
+app.use(function errorHandler (err, req, res, next) {
+  if (res.headersSent) {
+    return next(err)
+  }
+  res.status(500)
+  res.render('error', { error: err })
+})
 
 // Serve //
 app.listen(port)

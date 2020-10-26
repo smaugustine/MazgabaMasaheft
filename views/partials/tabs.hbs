@@ -1,33 +1,44 @@
-<div class="tabs is-centered">
+<div class="tabs is-centered mb-5">
   <ul>
-    <li {{#if data}}class="is-active"{{/if}}>
-      <a href="./main">
-        <span class="icon is-small"><i class="fas fa-file-alt"></i></span>
+    <li {{#if active.data}} class="is-active" {{/if}}>
+      <a {{#unless active.data}} href="./main{{#if branch}}?branch={{branch}}{{/if}}" {{/unless}}>
+        <span class="icon is-small is-hidden-mobile"><i class="fas fa-file-alt"></i></span>
         <span>Data</span>
       </a>
     </li>
-    <li>
-      <a>
-        <span class="icon is-small"><i class="fas fa-image"></i></span>
+    <li {{#if active.text}} class="is-active" {{/if}} class="is-hidden">
+      <a {{#unless active.text}} href="./text{{#if branch}}?branch={{branch}}{{/if}}" {{/unless}}>
+        <span class="icon is-small is-hidden-mobile"><i class="fas fa-paragraph"></i></span>
+        <span>Text</span>
+      </a>
+    </li>
+    {{#if images}}
+    <li {{#if active.images}} class="is-active" {{/if}}>
+      <a {{#unless active.images}} href="./viewer{{#if branch}}?branch={{branch}}{{/if}}"{{/unless}}>
+        <span class="icon is-small is-hidden-mobile"><i class="fas fa-image"></i></span>
         <span>Images</span>
       </a>
     </li>
-    <li {{#if xml}}class="is-active"{{/if}}>
-      <a href="./xml">
-        <span class="icon is-small"><i class="fas fa-file-code"></i></span>
+    {{/if}}
+    <li {{#if active.xml}}class="is-active"{{/if}}>
+      <a {{#unless active.xml}} href="./xml{{#if branch}}?branch={{branch}}{{/if}}"{{/unless}}>
+        <span class="icon is-small is-hidden-mobile"><i class="fas fa-file-code"></i></span>
         <span>XML</span>
       </a>
     </li>
     <li>
-      <a>
-        <span class="icon is-small"><i class="fab fa-github"></i></span>
-        <span>GitHub</span>
+      <a href="{{github}}" target="_blank">
+        <span class="icon is-small is-hidden-mobile"><i class="fab fa-github"></i></span>
+        <span class="is-hidden-mobile">GitHub</span>
+        <span class="is-hidden-tablet">GH</span>
       </a>
     </li>
     <li>
-      <a>
-        <span class="icon is-small"><i class="fas fa-share"></i></span>
-        <span>BetMas</span>
+      <a href="{{betamasaheft}}" target="_blank">
+        <span class="icon is-small is-hidden-mobile"><i class="fas fa-share"></i></span>
+        <span class="is-hidden-touch">Beta Masaḥǝft</span>
+        <span class="is-hidden-mobile is-hidden-desktop">BetMas</span>
+        <span class="is-hidden-tablet">BM</span>
       </a>
     </li>
   </ul>
