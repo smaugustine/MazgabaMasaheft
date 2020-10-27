@@ -1,23 +1,16 @@
 <form id="goto">
   <div class="field has-addons has-addons-centered">
     <div class="control">
-      <div class="select">
-        <select id="recordType">
-          <option disabled>Record Type:</option>
-          <option value="works">Work</option>
-          <option value="manuscripts">Manuscript</option>
-          <option value="persons">Person</option>
-        </select>
-      </div>
+      <input id="record" class="input" type="text" placeholder="Record ID" required>
     </div>
-    <div class="control">
-      <input id="recordId" class="input" type="text" placeholder="Record ID" required>
-    </div>
-    <div class="control">
+    <div class="control is-hidden-mobile">
       <div class="select">
-        <select disabled>
+        <select id="branch">
           <option disabled>Branch:</option>
           <option selected>master</option>
+          {{#each branches as |branch|}}
+          <option>{{branch}}</option>
+          {{/each}}
         </select>
       </div>
     </div>
@@ -34,7 +27,8 @@
     $('#goto').on('submit', function(e){
       e.preventDefault();
 
-      const redirect = $('#recordType').val()+"/"+$('#recordId').val()+"/main";
+      if($('#branch').val() == 'master') var redirect = "./"+$('#record').val()+"/main";
+      else var redirect = "./"+$('#record').val()+"/main?branch="+$('#branch').val();
 
       $(location).attr('href', redirect);
     });

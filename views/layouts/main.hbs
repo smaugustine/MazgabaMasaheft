@@ -21,8 +21,13 @@
   <section class="section">
     <div class="container">
 
-      {{#if title}}<h1 class="title is-3">{{title}}</h1>{{/if}}
-      {{#if subtitle}}<h2 class="subtitle is-5">{{subtitle}}</h2>{{/if}}
+      {{#if recordType}}
+      <h1 class="title is-3">{{recordType}}</h1>
+      {{else}}
+      <h1 class="title is-3">Mazgaba Maṣāḥǝft</h1>
+      {{/if}}
+
+      {{#if recordId}}<h2 class="subtitle is-5">{{recordId}}</h2>{{/if}}
 
       {{#if tabs}}{{> tabs tabs branch=branch}}{{/if}}
 

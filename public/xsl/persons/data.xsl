@@ -7,11 +7,15 @@
     <html>
       <body>
 
-        <div class="content">
-          
-          <xsl:apply-templates select="tei:teiHeader/tei:fileDesc/tei:titleStmt"/>
+        <div class="columns is-multiline">
 
-          <xsl:apply-templates select="tei:teiHeader/tei:revisionDesc"/>
+          <xsl:apply-templates select="tei:text/tei:body/tei:listPerson/tei:person"/>
+
+          <div class="column is-full">
+            <div class="content">
+              <xsl:apply-templates select="tei:teiHeader/tei:revisionDesc"/>
+            </div>
+          </div>
 
         </div>
 
@@ -20,32 +24,66 @@
   </xsl:template>
 
 
-  <xsl:template match="tei:titleStmt">
-    <h3 class="title is-4">Names</h3>
-    <ul>
-      <xsl:apply-templates select="tei:title"/>
-    </ul>
+  <xsl:template match="tei:person">
+    <div class="column is-two-thirds">
+      <div class="content">
+        <h3 class="title is-4">Names</h3>
+        <ul>
+          <xsl:apply-templates select="tei:persName"/>
+        </ul>
+      </div>
+    </div>
+
+    <div class="column is-one-third">
+      <div class="panel">
+      <div class="panel-block">
+          <p>
+            <b>Gender: </b>
+            <xsl:if test="./@sex='1'">Male</xsl:if>
+            <xsl:if test="./@sex='2'">Female</xsl:if>
+          </p>
+        </div>
+        <div class="panel-block">
+          <p>
+            <b>Birth: </b>
+            <xsl:value-of select="tei:birth/@when"/>
+          </p>
+        </div>
+        <div class="panel-block">
+          <p>
+            <b>Floruit: </b>
+            <xsl:value-of select="tei:floruit/@notBefore"/>-<xsl:value-of select="tei:floruit/@notAfter"/>
+          </p>
+        </div>
+        <div class="panel-block">
+          <p>
+            <b>Death: </b>
+            <xsl:value-of select="tei:death/@when"/>
+          </p>
+        </div>
+      </div>
+    </div>
   </xsl:template>
 
-  <xsl:template match="tei:title[@xml:lang='gez']">
+  <xsl:template match="tei:persName[@xml:lang='gez']">
     <xsl:variable name="anchor" select="concat('#', ./@xml:id)"/>
 
     <li>
       <xsl:value-of select="."/>
 
       <xsl:text> (</xsl:text>
-      <i><xsl:value-of select="../tei:title[@corresp=$anchor and @xml:lang='gez']"/></i>
+      <i><xsl:value-of select="../tei:persName[@corresp=$anchor and @xml:lang='gez']"/></i>
 
-      <xsl:if test="../tei:title[@corresp=$anchor and @xml:lang='en']">
+      <xsl:if test="../tei:persName[@corresp=$anchor and @xml:lang='en']">
         <xsl:text>, </xsl:text>
-        <xsl:value-of select="../tei:title[@corresp=$anchor and @xml:lang='en']"/>
+        <xsl:value-of select="../tei:persName[@corresp=$anchor and @xml:lang='en']"/>
       </xsl:if>
 
       <xsl:text>)</xsl:text>
     </li>
   </xsl:template>
 
-  <xsl:template match="tei:title[@corresp]" />
+  <xsl:template match="tei:persName[@corresp]" />
 
 
   <xsl:template match="tei:revisionDesc">

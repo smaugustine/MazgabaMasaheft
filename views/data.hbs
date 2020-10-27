@@ -1,5 +1,5 @@
-<article id="person-data">
-  <script id="xmlContent" type="text/xml">{{{xml}}}</script>
+<article id="recordData">
+  <script id="xmlDoc" type="text/xml">{{{xmlDoc}}}</script>
 </article>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
@@ -9,14 +9,14 @@
     const xsltProcessor = new XSLTProcessor();
     const domParser = new DOMParser();
 
-    xmlRequest.open("GET", "/static/xsl/persons/data.xsl", false);
+    xmlRequest.open("GET", "/static/xsl/{{recordType}}/data.xsl", false);
     xmlRequest.send(null);
     const xslStylesheet = xmlRequest.responseXML;
     xsltProcessor.importStylesheet(xslStylesheet);
 
-    const xmlDoc = domParser.parseFromString(document.getElementById('xmlContent').innerHTML, "text/xml");
+    const xmlDoc = domParser.parseFromString(document.getElementById('xmlDoc').innerHTML, "text/xml");
     
-    $('#person-data').html(xsltProcessor.transformToFragment(xmlDoc, document));
+    $('#recordData').html(xsltProcessor.transformToFragment(xmlDoc, document));
 
     $.getJSON("/static/json/editors.json", function(editors){
       $('span[data-initials]').each(function(){
@@ -28,6 +28,12 @@
       $(this).text(
         (new Date($(this).attr('datetime')).toLocaleDateString())
       );
+    });
+
+    $(document).on('click', 'a[data-toggle]', function(){
+      var elemId = $(this).attr('data-toggle');
+      $("*[data-for='"+elemId+"']").toggleClass('is-hidden');
+      $(this).find('.icon').toggleClass('is-hidden');
     });
   });
 </script>

@@ -3,22 +3,6 @@
 
   <xsl:output method="html" indent="no"/>
 
-  <xsl:template match="tei:TEI">
-    <html>
-      <body>
-
-        <h3 class="title is-4">Contents</h3>
-
-        <div class="content">
-        
-          <xsl:apply-templates select="tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msContents"/>
-
-        </div>
-
-      </body>
-    </html>
-  </xsl:template>
-
   <xsl:template match="tei:msContents">
     <div class="msContents">
       <p>
@@ -31,20 +15,43 @@
     </div>
   </xsl:template>
 
+
+  <xsl:template match="tei:summary">
+    <xsl:if test="not(.='')">
+      <div class="card">
+        <header class="card-header">
+          <span class="card-header-title">Summary</span>
+          <a href="#" class="card-header-icon">
+            <span class="icon is-small"><i class="fas fa-chevron-left"></i></span>
+          </a>
+        </header>
+        <div class="card-content is-hidden">
+          <div class="content">
+            <xsl:apply-templates/>
+          </div>
+        </div>
+      </div>
+    </xsl:if>
+  </xsl:template>
+
+
   <xsl:template match="tei:msItem">
     <li>
       <a>
         <xsl:attribute name="data-toggle">
           <xsl:value-of select="./@xml:id"/>
         </xsl:attribute>
-        <strong><xsl:value-of select="tei:title"/></strong>
-        <xsl:if test="tei:title=''">
-          <xsl:text>[no title]</xsl:text>
-        </xsl:if>
-        <small>
-          <span class="icon is-small"><i class="fas fa-chevron-left"></i></span>
-          <span class="icon is-small is-hidden"><i class="fas fa-chevron-down"></i></span>
-        </small>
+        <strong>
+          <xsl:value-of select="tei:title"/>
+          <xsl:if test="tei:title=''">
+            <xsl:attribute name="data-work">
+              <xsl:value-of select="tei:title/@ref"/>
+            </xsl:attribute>
+            <xsl:value-of select="tei:title/@ref"/>
+          </xsl:if>
+        </strong>
+          <span class="icon is-small"><i class="fas fa-angle-left"></i></span>
+          <span class="icon is-small is-hidden"><i class="fas fa-angle-down"></i></span>
       </a>
       <p class="is-hidden">
         <xsl:attribute name="data-for">

@@ -3,20 +3,6 @@
 
   <xsl:output method="html" indent="no"/>
 
-  <xsl:template match="tei:TEI">
-    <html>
-      <body>
-
-        <div class="content">
-
-          <xsl:apply-templates select="tei:teiHeader/tei:revisionDesc"/>
-
-        </div>
-
-      </body>
-    </html>
-  </xsl:template>
-
   <xsl:template match="tei:revisionDesc">
     <h3 class="title is-4">Revisions</h3>
     <ul>
