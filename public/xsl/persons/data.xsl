@@ -3,6 +3,8 @@
 
   <xsl:output method="html" indent="no"/>
 
+  <xsl:include href="../revisions.xsl"/>
+
   <xsl:template match="tei:TEI">
     <html>
       <body>
@@ -84,33 +86,5 @@
   </xsl:template>
 
   <xsl:template match="tei:persName[@corresp]" />
-
-
-  <xsl:template match="tei:revisionDesc">
-    <h3 class="title is-4">Revisions</h3>
-    <ul>
-      <xsl:apply-templates select="tei:change"/>
-    </ul>
-  </xsl:template>
-
-  <xsl:template match="tei:change">
-    <li>
-      <strong><span>
-        <xsl:attribute name="data-initials">
-          <xsl:value-of select="./@who"/>
-        </xsl:attribute>
-        <xsl:value-of select="./@who"/>
-      </span></strong>
-      <xsl:text> </xsl:text>
-      <xsl:value-of select="."/>
-      <xsl:text> (</xsl:text>
-      <time>
-        <xsl:attribute name="datetime">
-          <xsl:value-of select="./@when"/>
-        </xsl:attribute>
-      </time>
-      <xsl:text>)</xsl:text>
-    </li>
-  </xsl:template>
 
 </xsl:stylesheet>

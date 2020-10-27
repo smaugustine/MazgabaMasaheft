@@ -4,7 +4,7 @@
   <xsl:output method="html" indent="no"/>
 
   <xsl:include href="data-contents.xsl"/>
-  <xsl:include href="data-meta.xsl"/>
+  <xsl:include href="../revisions.xsl"/>
 
   <xsl:template match="tei:TEI">
     <html>

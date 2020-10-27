@@ -4,7 +4,7 @@
   <xsl:output method="html" indent="no"/>
 
   <xsl:template match="tei:revisionDesc">
-    <h3 class="title is-4">Revisions</h3>
+    <h3 class="title is-4">Revision History</h3>
     <ul>
       <xsl:apply-templates select="tei:change"/>
     </ul>
