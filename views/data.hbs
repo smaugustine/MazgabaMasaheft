@@ -30,10 +30,23 @@
       );
     });
 
+    //https://api.zotero.org/groups/358366/items/?tag=bm:Grebaut1935LesanaSab&format=bib&v=3
+    //https://api.zotero.org/groups/358366/items/?format=bib&v=3&tag=
+
+    $('div[data-zotero]').each(function(){
+      var tag = $(this).attr('data-zotero');
+      $(this).load('https://api.zotero.org/groups/358366/items/?format=bib&v=3&tag='+tag);
+    });
+
     $(document).on('click', 'a[data-toggle]', function(){
       var elemId = $(this).attr('data-toggle');
       $("*[data-for='"+elemId+"']").toggleClass('is-hidden');
       $(this).find('.icon').toggleClass('is-hidden');
+    });
+
+    $('a[href="./viewer"]').each(function(){
+      if($('#recordMeta').is(':not([data-iiif]):not([data-images])')) $(this).addClass('has-text-grey').removeAttr('href');
+      else if($('#recordMeta').is('[data-images]')) $(this).attr('href', $('#recordMeta').attr('data-images')).attr('target', '_blank');
     });
   });
 </script>

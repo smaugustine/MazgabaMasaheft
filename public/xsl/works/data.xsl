@@ -3,6 +3,7 @@
 
   <xsl:output method="html" indent="no"/>
 
+  <xsl:include href="../bibliography.xsl"/>
   <xsl:include href="../revisions.xsl"/>
 
   <xsl:template match="tei:TEI">
@@ -12,6 +13,9 @@
         <div class="content">
           
           <xsl:apply-templates select="tei:teiHeader/tei:fileDesc/tei:titleStmt"/>
+
+          <h3 class="title is-4">Bibliography</h3>
+          <xsl:apply-templates select="tei:text/tei:body/tei:div[@type='bibliography']|tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:additional/tei:adminInfo/tei:recordHist/tei:source"/>
 
           <xsl:apply-templates select="tei:teiHeader/tei:revisionDesc"/>
 

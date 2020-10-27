@@ -4,6 +4,7 @@
   <xsl:output method="html" indent="no"/>
 
   <xsl:template match="tei:msContents">
+    <h3 class="title is-4">Contents</h3>
     <div class="msContents">
       <p>
         <xsl:apply-templates select="tei:summary"/>

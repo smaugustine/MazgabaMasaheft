@@ -132,6 +132,7 @@ app.get('/:type/:id/xml', function(req, res, next) {
 
   res.locals.tabs = {
     active: { "xml": true },
+    images: (res.locals.recordType == 'manuscripts'),
     github: 'https://github.com/BetaMasaheft/'+res.locals.RecordType+'/blob/'+res.locals.branch+'/'+res.locals.path,
     betamasaheft: 'https://betamasaheft.eu/tei/'+res.locals.recordId+'.xml'
   }
