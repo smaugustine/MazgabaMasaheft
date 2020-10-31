@@ -7,7 +7,7 @@
   <link rel="license" href="//creativecommons.org/licenses/by-sa/4.0/">
   <link rel="shortcut icon" href="/static/images/favicon.png" type="image/png">
 
-  <title>Mazgaba Maṣāḥǝft</title>
+  <title>{{#if subtitle}}{{subtitle}} | {{/if}}Mazgaba Maṣāḥǝft</title>
   
   
   <link rel="stylesheet" type="text/css" href="/styles/style.sass">
@@ -16,18 +16,50 @@
 </head>
 <body>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
   {{> navbar}}
   
   <section class="section">
     <div class="container">
 
-      {{#if recordType}}
-      <h1 class="title is-3">{{recordType}}</h1>
-      {{else}}
-      <h1 class="title is-3">Mazgaba Maṣāḥǝft</h1>
-      {{/if}}
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item" style="justify-content: normal;">
+            <div class="content">
+              <p class="title is-3">{{title}}</p>
+              <p class="subtitle is-5">{{subtitle}}</p>
+            </div>
+          </div>
+        </div>
 
-      {{#if recordId}}<h2 class="subtitle is-5">{{recordId}}</h2>{{/if}}
+        <div class="level-right">
+          <div class="level-item">
+            {{#if recordId}}
+            <form class="is-pulled-right">
+              <div class="field has-addons has-addons-centered">
+                <div class="control is-hidden-mobile">
+                  <a class="button is-static is-small">Branch:</a>
+                </div>
+                <div class="control">
+                  <div class="select is-small">
+                    <select name="branch">
+                      <option disabled>Branch:</option>
+                      {{#each branches as |branch|}}
+                      <option {{#if branch.current}}selected{{/if}}>{{branch.name}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+                <div class="control">
+                  <button type="submit" class="button is-info is-small">Change</button>
+                </div>
+              </div>
+            </form>
+            {{/if}}
+          </div>
+        </div>
+      </div>
 
       {{#if tabs}}{{> tabs tabs branch=branch}}{{/if}}
 

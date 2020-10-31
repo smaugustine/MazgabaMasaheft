@@ -14,7 +14,7 @@
     </li>
     {{#if images}}
     <li {{#if active.images}} class="is-active" {{/if}}>
-      <a {{#unless active.images}} href="./viewer{{#if branch}}?branch={{branch}}{{/if}}"{{/unless}}>
+      <a {{#unless images.noImages}}{{#unless active.images}}href="{{#if images.iiif}}./viewer{{#if branch}}?branch={{branch}}{{/if}}{{/if}}{{#if images.url}}{{images.url}}{{/if}}"{{/unless}}{{else}}class="has-text-grey"{{/unless}} {{#if images.url}}target="_blank"{{/if}}>
         <span class="icon is-small is-hidden-mobile"><i class="fas fa-image"></i></span>
         <span>Images</span>
       </a>

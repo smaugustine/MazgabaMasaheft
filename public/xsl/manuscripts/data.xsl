@@ -37,18 +37,6 @@
 
         </div>
 
-        <div id="recordMeta" class="is-hidden">
-          <xsl:if test="tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msIdentifier/tei:idno/@facs">
-            <xsl:attribute name="data-iiif"></xsl:attribute>
-          </xsl:if>
-
-          <xsl:if test="tei:facsimile/tei:graphic/@url">
-            <xsl:attribute name="data-images">
-              <xsl:value-of select="tei:facsimile/tei:graphic/@url"/>
-            </xsl:attribute>
-          </xsl:if>
-        </div>
-
       </body>
     </html>
   </xsl:template>

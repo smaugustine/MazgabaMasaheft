@@ -2,7 +2,6 @@
   <script id="xmlDoc" type="text/xml">{{{xmlDoc}}}</script>
 </article>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script>
   $(document).ready(function(){
     const xmlRequest = new XMLHttpRequest();
@@ -30,9 +29,6 @@
       );
     });
 
-    //https://api.zotero.org/groups/358366/items/?tag=bm:Grebaut1935LesanaSab&format=bib&v=3
-    //https://api.zotero.org/groups/358366/items/?format=bib&v=3&tag=
-
     $('div[data-zotero]').each(function(){
       var tag = $(this).attr('data-zotero');
       $(this).load('https://api.zotero.org/groups/358366/items/?format=bib&v=3&tag='+tag);
@@ -42,11 +38,6 @@
       var elemId = $(this).attr('data-toggle');
       $("*[data-for='"+elemId+"']").toggleClass('is-hidden');
       $(this).find('.icon').toggleClass('is-hidden');
-    });
-
-    $('a[href="./viewer"]').each(function(){
-      if($('#recordMeta').is(':not([data-iiif]):not([data-images])')) $(this).addClass('has-text-grey').removeAttr('href');
-      else if($('#recordMeta').is('[data-images]')) $(this).attr('href', $('#recordMeta').attr('data-images')).attr('target', '_blank');
     });
   });
 </script>

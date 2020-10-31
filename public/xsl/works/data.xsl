@@ -10,14 +10,50 @@
     <html>
       <body>
 
-        <div class="content">
-          
-          <xsl:apply-templates select="tei:teiHeader/tei:fileDesc/tei:titleStmt"/>
+        <div class="columns is-multiline">
 
-          <h3 class="title is-4">Bibliography</h3>
-          <xsl:apply-templates select="tei:text/tei:body/tei:div[@type='bibliography']|tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:additional/tei:adminInfo/tei:recordHist/tei:source"/>
+          <div class="column">
+            <div class="content">
+              <xsl:apply-templates select="tei:teiHeader/tei:fileDesc/tei:titleStmt"/>
+            </div>
+          </div>
 
-          <xsl:apply-templates select="tei:teiHeader/tei:revisionDesc"/>
+          <div class="column is-one-third">
+            <div class="message is-info">
+              <div class="message-body content">
+                <p>Search for records that reference this work:</p>
+                <div class="buttons is-centered">
+                  <a class="button is-info is-small">
+                    <xsl:attribute name="href">
+                      <xsl:text disable-output-escaping="yes">/search?type=manuscripts<![CDATA[&]]>q=</xsl:text>
+                      <xsl:value-of select="./@xml:id"/>
+                    </xsl:attribute>
+                    <span class="icon"><i class="fas fa-search"></i></span>
+                    <span>Manuscripts</span>
+                  </a>
+                  <a class="button is-info is-small">
+                    <xsl:attribute name="href">
+                      <xsl:text disable-output-escaping="yes">/search?type=persons<![CDATA[&]]>q=</xsl:text>
+                      <xsl:value-of select="./@xml:id"/>
+                    </xsl:attribute>
+                    <span class="icon"><i class="fas fa-search"></i></span>
+                    <span>Persons</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-full">
+            <div class="content">
+
+              <h3 class="title is-4">Bibliography</h3>
+              <xsl:apply-templates select="tei:text/tei:body/tei:div[@type='bibliography']|tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:additional/tei:adminInfo/tei:recordHist/tei:source"/>
+
+              <xsl:apply-templates select="tei:teiHeader/tei:revisionDesc"/>
+
+            </div>
+          </div>
 
         </div>
 

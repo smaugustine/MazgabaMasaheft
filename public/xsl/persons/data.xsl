@@ -46,7 +46,7 @@
 
     <div class="column is-one-third">
       <div class="panel">
-      <div class="panel-block">
+        <div class="panel-block">
           <p>
             <b>Gender: </b>
             <xsl:if test="./@sex='1'">Male</xsl:if>
@@ -70,6 +70,30 @@
             <b>Death: </b>
             <xsl:value-of select="tei:death/@when"/>
           </p>
+        </div>
+      </div>
+
+      <div class="message is-info">
+        <div class="message-body content">
+          <p>Search for records that reference this person:</p>
+          <div class="buttons is-centered">
+            <a class="button is-info is-small">
+              <xsl:attribute name="href">
+                <xsl:text disable-output-escaping="yes">/search?type=works<![CDATA[&]]>q=</xsl:text>
+                <xsl:value-of select="/*/@xml:id"/>
+              </xsl:attribute>
+              <span class="icon"><i class="fas fa-search"></i></span>
+              <span>Works</span>
+            </a>
+            <a class="button is-info is-small">
+              <xsl:attribute name="href">
+                <xsl:text disable-output-escaping="yes">/search?type=manuscripts<![CDATA[&]]>q=</xsl:text>
+                <xsl:value-of select="/*/@xml:id"/>
+              </xsl:attribute>
+              <span class="icon"><i class="fas fa-search"></i></span>
+              <span>Manuscripts</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>

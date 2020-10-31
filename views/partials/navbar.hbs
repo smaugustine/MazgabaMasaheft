@@ -4,7 +4,7 @@
       {{> logo height=28}}
     </a>
 
-    <a role="button" class="navbar-burger burger" aria-label="menu" data-target="navbar-menu">
+    <a id="burger" role="button" class="navbar-burger burger" data-target="navbar-menu">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -16,6 +16,19 @@
       <a class="navbar-item" href="/works/">Works</a>
       <a class="navbar-item" href="/manuscripts/">Manuscripts</a>
       <a class="navbar-item" href="/persons/">Persons</a>
+      <a class="navbar-item" href="/search/">
+        <span class="icon is-hidden-mobile"><i class="fas fa-search"></i></span>
+        <span class="is-hidden-tablet">Search</span>
+      </a>
     </div>
   </div>
 </nav>
+
+<script>
+  $(document).ready(function(){
+    $(document).on('click', '#burger', function(){
+      $(this).toggleClass('is-active');
+      $('#navbar-menu').toggleClass('is-active');
+    });
+  });
+</script>

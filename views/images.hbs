@@ -1,69 +1,34 @@
-<article id="manuscript-images" class="block">
-  <script id="xmlContent" type="text/xml">{{{xmlDoc}}}</script>
-</article>
-<div id="manifest-box" class="notification block is-hidden">
-  <svg class="is-hidden" height="1rem" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 493.35999 441.33334" xml:space="preserve" id="svg2" version="1.1"><metadata id="metadata8"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/></cc:Work></rdf:RDF></metadata><defs id="defs6"/><g transform="matrix(1.3333333,0,0,-1.3333333,0,441.33333)" id="g10"><g transform="scale(0.1)" id="g12"><path id="path14" style="fill:#2873ab;fill-opacity:1;fill-rule:nonzero;stroke:none" d="M 65.2422,2178.75 775.242,1915 773.992,15 65.2422,276.25 v 1902.5"/><path id="path16" style="fill:#2873ab;fill-opacity:1;fill-rule:nonzero;stroke:none" d="m 804.145,2640.09 c 81.441,-240.91 -26.473,-436.2 -241.04,-436.2 -214.558,0 -454.511,195.29 -535.9527,436.2 -81.4335,240.89 26.4805,436.18 241.0387,436.18 214.567,0 454.512,-195.29 535.954,-436.18"/><path id="path18" style="fill:#ed1d33;fill-opacity:1;fill-rule:nonzero;stroke:none" d="M 1678.58,2178.75 968.578,1915 969.828,15 1678.58,276.25 v 1902.5"/><path id="path20" style="fill:#ed1d33;fill-opacity:1;fill-rule:nonzero;stroke:none" d="m 935.082,2640.09 c -81.437,-240.91 26.477,-436.2 241.038,-436.2 214.56,0 454.51,195.29 535.96,436.2 81.43,240.89 -26.48,436.18 -241.04,436.18 -214.57,0 -454.52,-195.29 -535.958,-436.18"/><path id="path22" style="fill:#2873ab;fill-opacity:1;fill-rule:nonzero;stroke:none" d="m 1860.24,2178.75 710,-263.75 -1.25,-1900 -708.75,261.25 v 1902.5"/><path id="path24" style="fill:#2873ab;fill-opacity:1;fill-rule:nonzero;stroke:none" d="m 2603.74,2640.09 c 81.45,-240.91 -26.47,-436.2 -241.03,-436.2 -214.58,0 -454.52,195.29 -535.96,436.2 -81.44,240.89 26.48,436.18 241.03,436.18 214.57,0 454.51,-195.29 535.96,-436.18"/><path id="path26" style="fill:#ed1d33;fill-opacity:1;fill-rule:nonzero;stroke:none" d="m 3700.24,3310 v -652.5 c 0,0 -230,90 -257.5,-142.5 -2.5,-247.5 0,-336.25 0,-336.25 l 257.5,83.75 V 1690 l -258.61,-92.5 V 262.5 L 2735.24,0 v 2360 c 0,0 -15,850 965,950"/></g></g></svg>
-  <a id="manifest"></a>
-  <span class="is-hidden"> to view the images of this manuscript on the institution's website.</span>
+{{#if images.iiif}}
+<article id="manuscript-images" class="block" style="height: 80vh; position: relative;"></article>
+
+<div class="notification block">
+  <svg height="1rem" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 493.35999 441.33334" xml:space="preserve" id="svg2" version="1.1"><metadata id="metadata8"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/></cc:Work></rdf:RDF></metadata><defs id="defs6"/><g transform="matrix(1.3333333,0,0,-1.3333333,0,441.33333)" id="g10"><g transform="scale(0.1)" id="g12"><path id="path14" style="fill:#2873ab;fill-opacity:1;fill-rule:nonzero;stroke:none" d="M 65.2422,2178.75 775.242,1915 773.992,15 65.2422,276.25 v 1902.5"/><path id="path16" style="fill:#2873ab;fill-opacity:1;fill-rule:nonzero;stroke:none" d="m 804.145,2640.09 c 81.441,-240.91 -26.473,-436.2 -241.04,-436.2 -214.558,0 -454.511,195.29 -535.9527,436.2 -81.4335,240.89 26.4805,436.18 241.0387,436.18 214.567,0 454.512,-195.29 535.954,-436.18"/><path id="path18" style="fill:#ed1d33;fill-opacity:1;fill-rule:nonzero;stroke:none" d="M 1678.58,2178.75 968.578,1915 969.828,15 1678.58,276.25 v 1902.5"/><path id="path20" style="fill:#ed1d33;fill-opacity:1;fill-rule:nonzero;stroke:none" d="m 935.082,2640.09 c -81.437,-240.91 26.477,-436.2 241.038,-436.2 214.56,0 454.51,195.29 535.96,436.2 81.43,240.89 -26.48,436.18 -241.04,436.18 -214.57,0 -454.52,-195.29 -535.958,-436.18"/><path id="path22" style="fill:#2873ab;fill-opacity:1;fill-rule:nonzero;stroke:none" d="m 1860.24,2178.75 710,-263.75 -1.25,-1900 -708.75,261.25 v 1902.5"/><path id="path24" style="fill:#2873ab;fill-opacity:1;fill-rule:nonzero;stroke:none" d="m 2603.74,2640.09 c 81.45,-240.91 -26.47,-436.2 -241.03,-436.2 -214.58,0 -454.52,195.29 -535.96,436.2 -81.44,240.89 26.48,436.18 241.03,436.18 214.57,0 454.51,-195.29 535.96,-436.18"/><path id="path26" style="fill:#ed1d33;fill-opacity:1;fill-rule:nonzero;stroke:none" d="m 3700.24,3310 v -652.5 c 0,0 -230,90 -257.5,-142.5 -2.5,-247.5 0,-336.25 0,-336.25 l 257.5,83.75 V 1690 l -258.61,-92.5 V 262.5 L 2735.24,0 v 2360 c 0,0 -15,850 965,950"/></g></g></svg>
+  <a href="{{images.iiif}}" target="_blank">{{images.iiif}}</a>
 </div>
 
-<div id="no-images" class="notification is-warning is-hidden">
-  <p>No images available.</p>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/mirador@rc/dist/mirador.min.js"></script>
 <script>
-  $(document).ready(function(){
-    const xmlRequest = new XMLHttpRequest();
-    const xsltProcessor = new XSLTProcessor();
-    const domParser = new DOMParser();
-
-    xmlRequest.open("GET", "/static/xsl/manuscripts/iiif.xsl", false);
-    xmlRequest.send(null);
-    var xslStylesheet = xmlRequest.responseXML;
-    xsltProcessor.importStylesheet(xslStylesheet);
-
-    var xmlDoc = domParser.parseFromString(document.getElementById('xmlContent').innerHTML, "text/xml");
-    
-    $('#manifest').html(xsltProcessor.transformToFragment(xmlDoc, document));
-    
-    var iiifManifest = $('#manifest').text();
-
-    if(iiifManifest !== '') {
-      $('#manuscript-images').css('height', '80vh').css('position', 'relative');
-      $('#manifest-box, #manifest-box svg').removeClass('is-hidden');
-
-      if(!iiifManifest.startsWith('http')) iiifManifest = 'https://betamasaheft.eu/api/iiif/{{id}}/manifest'
-      $('#manifest').attr('href', iiifManifest).text(iiifManifest);
-
-      Mirador.viewer({
-        id: "manuscript-images",
-        windows: [
-          { 
-            manifestId: iiifManifest
-          }
-        ],
-        selectedTheme: 'dark'
-      });
-    }
-    else {
-      xmlRequest.open("GET", "/static/xsl/manuscripts/images.xsl", false);
-      xmlRequest.send(null);
-      xslStylesheet = xmlRequest.responseXML;
-      xsltProcessor.importStylesheet(xslStylesheet);
-
-      xmlDoc = domParser.parseFromString(document.getElementById('xmlContent').innerHTML, "text/xml");
-      
-      $('#manifest').html(xsltProcessor.transformToFragment(xmlDoc, document));
-      
-      const imagesUrl = $('#manifest').text();
-
-      if(imagesUrl !== '') {
-        $('#manifest-box, #manifest-box span').removeClass('is-hidden').addClass('is-info');
-        $('#manifest').attr('href', imagesUrl).text('Click here');
-      }
-      else $('#no-images').removeClass('is-hidden');
-    }
-  });
+  Mirador.viewer({
+      id: "manuscript-images",
+      windows: [
+        { 
+          manifestId: '{{images.iiif}}'
+        }
+      ],
+      selectedTheme: 'dark'
+    });
 </script> 
+{{/if}}
+
+{{#if images.url}}
+<div class="notification block is-info">
+  <a href="{{imagesUrl}}" target="_blank">Click here</a>
+  <span> to view the images of this manuscript on the institution's website.</span>
+</div>
+{{/if}}
+
+{{#unless images.iiif}}{{#unless images.url}}
+<div id="no-images" class="notification is-warning">
+  <p>No images of this manuscript are available.</p>
+</div>
+{{/unless}}{{/unless}}

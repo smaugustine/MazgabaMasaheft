@@ -8,6 +8,6 @@ Since the project data is stored as XML files in GitHub repositories, we can use
 
 ## License
 
-The data from Beta Maṣāḥǝft is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
-
 The Mazgaba Maṣāḥǝft app is licensed under the [MIT License](https://github.com/smaugustine/MazgabaMasaheft/blob/main/LICENSE).
+
+The data from Beta Maṣāḥǝft is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
