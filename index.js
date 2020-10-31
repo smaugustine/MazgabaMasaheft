@@ -184,6 +184,7 @@ app.get('/:type/:id/main', function(req, res, next) {
   }
 
   if(res.locals.branch == 'master') res.locals.branch = false
+  res.locals.recordType = decapitalize(res.locals.recordType)
 
   res.render('data', res.locals)
 
@@ -196,7 +197,7 @@ app.get('/:type/:id/viewer', function(req, res, next) {
   else{
     res.locals.tabs = {
       active: { "images": true },
-      images: true,
+      images: res.locals.images,
       github: 'https://github.com/BetaMasaheft/Manuscripts/blob/'+res.locals.branch+'/'+res.locals.path,
       betamasaheft: 'https://betamasaheft.eu/manuscripts/'+res.locals.recordId+'/viewer'
     }
@@ -213,7 +214,7 @@ app.get('/:type/:id/xml', function(req, res, next) {
 
   res.locals.tabs = {
     active: { "xml": true },
-    images: (res.locals.recordType == 'Manuscripts'),
+    images: res.locals.images,
     github: 'https://github.com/BetaMasaheft/'+res.locals.recordType+'/blob/'+res.locals.branch+'/'+res.locals.path,
     betamasaheft: 'https://betamasaheft.eu/tei/'+decapitalize(res.locals.recordId)+'.xml'
   }
