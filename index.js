@@ -258,34 +258,42 @@ function getWorkPath(id) {
 
 function getManuscriptPath(id) {
   const collection = id.replace(/\d/g, '')
-  var thedir = ''
+  var dir = ''
 
   if(collection.startsWith('BAV')) {
-    thedir = 'VaticanBAV/'+collection.substr(3)
+    dir = 'VaticanBAV/'+collection.substr(3)
+  }
+
+  else if(collection.startsWith('Ber')) {
+    dir = 'Berlin/'
   }
 
   else if(collection.startsWith('BL')) {
-    thedir = 'LondonBritishLibrary/'+collection.substr(2)
+    dir = 'LondonBritishLibrary/'+collection.substr(2)
+  }
+
+  else if(collection.startsWith('BNF')) {
+    dir = 'ParisBNF/'+collection.substr(3)
   }
   
   else if(collection.startsWith('EMIP')) {
-    if(collection.substring(4) == 'ms') thedir = 'EMIP/magicscrolls'
+    if(collection.substring(4) == 'ms') dir = 'EMIP/magicscrolls'
     else {
       var idno = parseInt(id.substring(4))
-      var dir = (Math.floor(idno/1000) * 1000 + 1) + '-' + (Math.ceil(idno/1000) * 1000)
-      thedir = 'EMIP/'+dir
+      var subdir = (Math.floor(idno/1000) * 1000 + 1) + '-' + (Math.ceil(idno/1000) * 1000)
+      dir = 'EMIP/'+subdir
     }
   }
 
   else if(collection.startsWith('EMML')) {
     var idno = parseInt(id.substring(4))
-    var dir = (Math.floor(idno/1000) * 1000 + 1) + '-' + (Math.ceil(idno/1000) * 1000)
-    thedir = 'EMML/'+dir
+    var subdir = (Math.floor(idno/1000) * 1000 + 1) + '-' + (Math.ceil(idno/1000) * 1000)
+    dir = 'EMML/'+subdir
   }
 
-  else if(collection.startsWith('ES')) thedir = 'ES'
+  else if(collection.startsWith('ES')) dir = 'ES'
 
-  return thedir + '/' + id + '.xml'
+  return dir + '/' + id + '.xml'
 }
 
 function getPersonPath(id) {
