@@ -2,11 +2,9 @@
   "name": "mazgaba-masaheft-desktop",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon -r dotenv/config index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron ."
   },
   "repository": {
     "type": "git",
@@ -18,19 +16,8 @@
     "url": "https://github.com/smaugustine/MazgabaMasaheft/issues"
   },
   "homepage": "https://github.com/smaugustine/MazgabaMasaheft#readme",
-  "dependencies": {
-    "@octokit/auth-app": "^2.7.0",
-    "@octokit/rest": "^18.0.6",
-    "bulma": "^0.9.1",
-    "express": "^4.17.1",
-    "express-compile-sass": "^4.0.0",
-    "express-handlebars": "^5.1.0",
-    "node-sass": "^4.14.1",
-    "xmldom": "^0.4.0",
-    "xpath": "0.0.32"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "dotenv": "^8.2.0",
-    "nodemon": "^2.0.6"
+    "electron": "^10.1.5"
   }
 }
