@@ -16,7 +16,9 @@
     "url": "https://github.com/smaugustine/MazgabaMasaheft/issues"
   },
   "homepage": "https://github.com/smaugustine/MazgabaMasaheft#readme",
-  "dependencies": {},
+  "dependencies": {
+    "electron-prefs": "^1.0.7"
+  },
   "devDependencies": {
     "electron": "^10.1.5"
   }

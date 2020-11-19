@@ -26,19 +26,19 @@
         <div class="pane-sm sidebar">
           <nav class="nav-group">
             <h5 class="nav-group-title">Records</h5>
-            <a class="nav-group-item">
+            <a id="sidebar-works" class="nav-group-item" style="display: none;">
               <span class="icon icon-doc-text"></span> Works
             </a>
-            <a class="nav-group-item">
+            <a id="sidebar-manuscripts" class="nav-group-item" style="display: none;">
               <span class="icon icon-book-open"></span> Manuscripts
             </a>
-            <a class="nav-group-item">
+            <a id="sidebar-persons" class="nav-group-item" style="display: none;">
               <span class="icon icon-users"></span> Persons
             </a>
-            <a class="nav-group-item">
+            <a id="sidebar-places" class="nav-group-item" style="display: none;">
               <span class="icon icon-globe"></span> Places
             </a>
-            <a class="nav-group-item">
+            <a id="sidebar-institutions" class="nav-group-item" style="display: none;">
               <span class="icon icon-archive"></span> Institutions
             </a>
           </nav>
@@ -46,20 +46,7 @@
 
         <div class="pane">
           <div class="padded-more">
-            <h1>Setup</h1>
-            <p>A single folder (e.g. "Beta Masaheft") should be used to contain all of the relevant data.</p>
-            <p>Within this folder, clone the data repositories you wish to use. The available repositories are:</p>
-            <ul>
-              <li>Manuscripts</li>
-              <li>Works</li>
-              <li>Persons</li>
-              <li>Places</li>
-              <li>Institutions</li>
-            </ul>
-            <p>These should not be renamed but rather keep the default name (e.g. "Manuscripts", "Works", etc.).</p>
-            <p>Only data from cloned repositories will be available. Thus, titles of works, for example, will be unavailable in manuscript records unless both repositories (Works and Manuscripts) are cloned.</p>
-            <p>Once the data has been synced, please select the folder to begin using this application:</p>
-            <p><button id="selectDirectory" class="btn btn-large btn-primary">Select Folder</button></p>
+            
           </div>
         </div>
       </div>
@@ -69,8 +56,12 @@
   <script>
     const { ipcRenderer } = require('electron')
 
-    document.getElementById('selectDirectory').addEventListener('click', () => {
-      ipcRenderer.send('openDirectory', {})
+    ipcRenderer.on('updateRepos', (event, repos) => {
+      console.log(repos);
+      repos.forEach(repo => {
+        repo = repo.toLowerCase();
+        if(document.getElementById('sidebar-'+repo) !== null) document.getElementById('sidebar-'+repo).style.display = 'block';
+      });
     });
   </script>
 </body>
