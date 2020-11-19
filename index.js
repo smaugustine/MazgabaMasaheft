@@ -161,6 +161,7 @@ app.get('/:type/:id/:response', function(req, res, next) {
 
       if(typeof manifest != 'undefined') {
         if(manifest.value.includes('gallica')) res.locals.images = { "iiif": manifest.value.replace('ark', 'iiif/ark') + '/manifest.json' }
+        else if(!manifest.value.includes('http')) res.locals.images = { "iiif": 'https://betamasaheft.eu/api/iiif/' + res.locals.recordId + '/manifest' }
         else res.locals.images = { "iiif": manifest.value }
       }
       else if(typeof imagesUrl != 'undefined') res.locals.images = { "url": imagesUrl.value }
