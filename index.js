@@ -159,7 +159,10 @@ app.get('/:type/:id/:response', function(req, res, next) {
       var manifest = select('//tei:idno/@facs', xmlDom)[0]
       var imagesUrl = select('//tei:graphic/@url', xmlDom)[0]
 
-      if(typeof manifest != 'undefined') res.locals.images = { "iiif": manifest.value }
+      if(typeof manifest != 'undefined') {
+        if(manifest.value.includes('gallica')) return res.locals.images = { "iiif": manifest.value.replace('ark', 'iiif/ark') + '/manifest.json' }
+        else return res.locals.images = { "iiif": manifest.value }
+      }
       else if(typeof imagesUrl != 'undefined') res.locals.images = { "url": imagesUrl.value }
       else res.locals.images = { "noImages": true }
     }
