@@ -100,7 +100,7 @@ app.get('/:type/:id', function(req, res, next) {
 app.get('/:type*', function(req, res, next) {
 
   res.locals.recordType = req.params.type
-  if( (!['works', 'manuscripts', 'persons'].includes(res.locals.recordType)) ) throw new Error('Invalid record type. Valid types are: "works", "manuscripts", and "persons".')
+  if( (!['works', 'manuscripts', 'persons', 'institutions', 'places'].includes(res.locals.recordType)) ) throw new Error('Invalid record type. Valid types are: "works", "manuscripts", "persons", "institutions", and "places".')
   res.locals.recordType = capitalize(res.locals.recordType)
 
   GitHub.paginate("GET /repos/:owner/:repo/branches", {
@@ -138,6 +138,19 @@ app.get('/:type/:id/:response', function(req, res, next) {
     repo: res.locals.recordType,
     ref: res.locals.branch,
     path: res.locals.path
+  })
+  .catch(err => {
+    if(err.status == 404) {
+      res.locals.path = 'new/' + res.locals.recordId + '.xml'
+
+      return GitHub.repos.getContent({
+        owner: 'BetaMasaheft',
+        repo: res.locals.recordType,
+        ref: res.locals.branch,
+        path: res.locals.path
+      })
+    }
+    else throw new Error(err)
   })
   .then(({ data }) => {
     return GitHub.git.getBlob({
@@ -252,6 +265,8 @@ function getPath(id, type) {
   if(type == 'Works') return getWorkPath(id)
   else if(type == 'Manuscripts') return getManuscriptPath(id)
   else if(type == 'Persons') return getPersonPath(id)
+  else if(type == 'Institutions') return getInstitutionPath(id)
+  else if(type == 'Places') return getPlacesPath(id)
   else return false
 }
 
@@ -303,6 +318,16 @@ function getManuscriptPath(id) {
 function getPersonPath(id) {
   const idno = parseInt(id.substring(3))
   return 'PRS' + (Math.floor(idno/1000) * 1000 + 1) + '-' + (Math.ceil(idno/1000) * 1000) + '/' + id + '.xml'
+}
+
+function getInstitutionPath(id) {
+  const idno = parseInt(id.substring(3))
+  return 'INS' + (Math.floor(idno/100) * 100 + 1).toString().padStart(4, '0') + '-INS' + (Math.ceil(idno/100) * 100).toString().padStart(4, '0') + '/' + id + '.xml'
+}
+
+function getPlacesPath(id) {
+  const idno = parseInt(id.substring(3))
+  return (Math.floor(idno/1000) * 1000 + 1) + '-' + (Math.ceil(idno/1000) * 1000) + '/' + id + '.xml'
 }
 
 function capitalize(string) {
